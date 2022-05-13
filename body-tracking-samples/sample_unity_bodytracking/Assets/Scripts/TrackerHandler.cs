@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.Azure.Kinect.BodyTracking;
 
-public class TrackerHandler : MonoBehaviour
-{
+public class TrackerHandler : MonoBehaviour {
     public Dictionary<JointId, JointId> parentJointMap;
     Dictionary<JointId, Quaternion> basisJointMap;
     public Quaternion[] absoluteJointRotations = new Quaternion[(int)JointId.Count];
@@ -104,11 +104,32 @@ public class TrackerHandler : MonoBehaviour
     public void updateTracker(BackgroundData trackerFrameData)
     {
         //this is an array in case you want to get the n closest bodies
-        int closestBody = findClosestTrackedBody(trackerFrameData);
+       // int closestBody = findClosestTrackedBody(trackerFrameData);
 
-        // render the closest body
-        Body skeleton = trackerFrameData.Bodies[closestBody];
-        renderSkeleton(skeleton, 0);
+        // render the body
+
+        Array.Sort(trackerFrameData.Bodies, (x, y) => {
+            System.Numerics.Vector3 pelvis_position_x = x.JointPositions3D[(int)JointId.Pelvis];
+            Vector3 pelvis_pos_x = new Vector3((float)pelvis_position_x.X, (float)pelvis_position_x.Y, (float)pelvis_position_x.Z);
+            System.Numerics.Vector3 pelvis_position_y = y.JointPositions3D[(int)JointId.Pelvis];
+            Vector3 pelvis_pos_y = new Vector3((float)pelvis_position_y.X, (float)pelvis_position_y.Y, (float)pelvis_position_y.Z);
+            return pelvis_pos_x.magnitude < pelvis_pos_y.magnitude ? -1 : pelvis_pos_x.magnitude > pelvis_pos_y.magnitude ? 1 : 0;
+        });
+        if (trackerFrameData.Bodies.Length > 0) {
+            
+            Body skeleton = trackerFrameData.Bodies[0];
+            renderSkeleton(skeleton, 0);
+        }else {
+            turnOnOffSkeletons(0);
+        }
+        if (trackerFrameData.Bodies.Length > 1) {
+            
+            Body skeleton = trackerFrameData.Bodies[1];
+            renderSkeleton(skeleton, 1);
+        }else {
+            turnOnOffSkeletons(1);
+        }
+        
     }
 
     int findIndexFromId(BackgroundData frameData, int id)

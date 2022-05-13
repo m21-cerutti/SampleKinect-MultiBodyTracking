@@ -55,7 +55,7 @@ public class SkeletalTrackingProvider : BackgroundDataProvider
                         }
 
                         // Try getting latest tracker frame.
-                        using (Frame frame = tracker.PopResult(TimeSpan.Zero, throwOnTimeout: false))
+                        using (Frame frame = tracker.PopResult(new TimeSpan(0,0,30), throwOnTimeout: false))
                         {
                             if (frame == null)
                             {

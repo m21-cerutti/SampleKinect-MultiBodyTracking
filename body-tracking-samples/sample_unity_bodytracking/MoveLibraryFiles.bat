@@ -13,10 +13,10 @@ copy packages\Microsoft.Azure.Kinect.Sensor.1.4.1\lib\netstandard2.0\Microsoft.A
 copy %BODY_TRACKING_TOOLS_PATH%cublas64_11.dll Assets\Plugins
 copy %BODY_TRACKING_TOOLS_PATH%cublasLt64_11.dll Assets\Plugins
 copy %BODY_TRACKING_TOOLS_PATH%cudart64_110.dll Assets\Plugins
-copy packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll Assets\Plugins
-copy packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll Assets\Plugins
-copy packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll Assets\Plugins
-copy packages\System.Reflection.Emit.Lightweight.4.6.0\lib\netstandard2.0\System.Reflection.Emit.Lightweight.dll Assets\Plugins
+copy packages\System.Buffers.4.5.1\lib\netstandard2.0\System.Buffers.dll Assets\Plugins
+copy packages\System.Memory.4.5.4\lib\netstandard2.0\System.Memory.dll Assets\Plugins
+copy packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll Assets\Plugins
+copy packages\System.Reflection.Emit.Lightweight.4.7.0\lib\netstandard2.0\System.Reflection.Emit.Lightweight.dll Assets\Plugins
 copy packages\Microsoft.Azure.Kinect.Sensor.1.4.1\lib\native\amd64\release\depthengine_2_0.dll Assets\Plugins
 copy packages\Microsoft.Azure.Kinect.Sensor.1.4.1\lib\native\amd64\release\k4a.dll Assets\Plugins
 copy packages\Microsoft.Azure.Kinect.Sensor.1.4.1\lib\native\amd64\release\k4arecord.dll Assets\Plugins
